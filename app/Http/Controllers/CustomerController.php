@@ -10,6 +10,6 @@ use Illuminate\Routing\Controller as BaseController;
 class CustomerController extends Controller
 {
     public function index(){
-        view('customer.index');
+        return view('customer.index');
     }
 }
