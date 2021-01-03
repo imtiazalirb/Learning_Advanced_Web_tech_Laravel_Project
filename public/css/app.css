@@ -19,3 +19,9 @@
     font-size: 15px;
     font-weight: bold;
 }
+
+.navbar .navbar-brand{
+
+  font-weight: lighter;
+  font-size: 0.8cm;
+}
