@@ -25,7 +25,4 @@ Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'
 Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer')->middleware('customer');
 Route::get('/delivery', 'App\Http\Controllers\DeliveryController@index')->name('delivery')->middleware('delivery');
 
-
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

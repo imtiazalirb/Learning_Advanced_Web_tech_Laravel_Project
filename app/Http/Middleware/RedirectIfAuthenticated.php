@@ -26,7 +26,9 @@ class RedirectIfAuthenticated
                 return redirect(RouteServiceProvider::HOME);
             }
         }
-
+        //echo '<pre>';
+        //var_dump($request);
+        //echo '</pre>';
         return $next($request);
     }
 }
