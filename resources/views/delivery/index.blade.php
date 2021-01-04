@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,7 +28,7 @@
     <header>
   <div class="mynav">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand mb-2" href="user_dashboard.php">ERP</a>
+    <a class="navbar-brand mb-2" href="">ERP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -38,36 +38,24 @@
         <li class="nav-item active">
           <a class="nav-link" href="admin_dashboard.php">Dashboard<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="admin_quotation_management.php">Quotation Requests</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Delivery
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="admin_all_employee.php">All Delivery Requests</a>
+            <a class="dropdown-item" href="admin_employee_signup.php">Pending Deliveries</a>
+            <a class="dropdown-item" href="admin_edit_employee.php">Shipped Deliverries</a>
+            <a class="dropdown-item" href="admin_edit_employee.php">Cancelled Deliverries</a>
+          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Employee Management
+          Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="admin_all_employee.php">All Employee</a>
-            <a class="dropdown-item" href="admin_employee_signup.php">Assign Employee</a>
-            <a class="dropdown-item" href="admin_edit_employee.php">Edit Employee Detail</a>
-          </div>
-        </li>
-                  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Customer Service Management
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="admin_all_userview.php">All User</a>
-            <a class="dropdown-item" href="admin_service_requests.php">Service State</a>
-          </div>
-        </li>
-                  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Product Management
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="admin_all_product.php">All Product</a>
-            <a class="dropdown-item" href="admin_add_product.php">Add Product</a>
-            <a class="dropdown-item" href="admin_edit_product.php">Edit Product Detail</a>
+            <a class="dropdown-item" href="admin_all_employee.php">My profile</a>
+            <a class="dropdown-item" href="admin_employee_signup.php">Logout </a>
           </div>
         </li>
       </ul>
@@ -75,14 +63,10 @@
     <!--LOGOUT BUTTON-->
 
     <h5 class="my-sm-2 mr-lg-2">Welcome, {{ Auth::user()->name }} </h5>
-
       <a class="btn btn-danger my-sm-2 ml-lg-2" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-
-
       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
           @csrf
       </form>
-
    </div>
   </nav>
 </div>
