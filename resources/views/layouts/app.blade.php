@@ -24,7 +24,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 </html>
-<<body>
+<body>
     <div id="app">
     @guest
     @else

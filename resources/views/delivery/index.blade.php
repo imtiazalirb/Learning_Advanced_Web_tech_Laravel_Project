@@ -55,7 +55,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="admin_all_employee.php">My profile</a>
-            <a class="dropdown-item" href="admin_employee_signup.php">Logout </a>
+            <a class="dropdown-item"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  href="{{ route('logout') }}">Logout </a>
           </div>
         </li>
       </ul>
