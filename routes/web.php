@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
 Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee')->middleware('employee');
 Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer')->middleware('customer');
-Route::resource('/delivery', App\Http\Controllers\DeliveryController::class)->middleware('delivery');
+Route::resource('/delivery', App\Http\Controllers\DeliveryController::class);
 //Route::get('/delivery', 'App\Http\Controllers\DeliveryController@index')->name('delivery')->middleware('delivery');
 //Route::get('/delivery', 'App\Http\Controllers\DeliveryController@table')->name('delivery')->middleware('delivery');
 

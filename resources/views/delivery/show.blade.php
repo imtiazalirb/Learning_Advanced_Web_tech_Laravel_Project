@@ -18,7 +18,6 @@
                 <th>Email</th>
                 <th>Verification</th>
                 <th>Status</th>
-                <th>Action</th>
                 <th width="250px">Action</th>
             </tr>
             @foreach ($delivery as $delivery)

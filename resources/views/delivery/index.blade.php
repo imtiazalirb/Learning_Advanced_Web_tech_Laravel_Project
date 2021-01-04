@@ -83,7 +83,6 @@
             <th>Amount</th>
             <th>Status</th>
             <th>Report</th>
-            <th>Action</th>
             <th width="250px">Action</th>
         </tr>
         @foreach ($Deliveries as $deliver)
@@ -98,7 +97,16 @@
             <td>{{ $deliver->amount }}</td>
             <td>{{ $deliver->status }}</td>
             <td>{{ $deliver->report }}</td>
-            <td></td>
+            <td>
+                <form action="{{ route('delivery.destroy',$deliver->id) }}" method="POST">
+
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>
