@@ -43,7 +43,7 @@
             Delivery
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{route('delivery.show')}}">All Delivery Requests</a>
+            <a class="dropdown-item" href="{{ route('delivery.show') }}">All Delivery Requests</a>
             <a class="dropdown-item" href="admin_employee_signup.php">Pending Deliveries</a>
             <a class="dropdown-item" href="admin_edit_employee.php">Shipped Deliverries</a>
             <a class="dropdown-item" href="admin_edit_employee.php">Cancelled Deliverries</a>
