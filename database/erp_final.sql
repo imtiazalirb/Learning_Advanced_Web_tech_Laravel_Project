@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2021 at 03:41 PM
+-- Generation Time: Jan 04, 2021 at 08:00 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.13
 
@@ -82,7 +82,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` int(11) DEFAULT NULL,
+  `role` int(11) DEFAULT 3,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -96,7 +96,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (1, 'Jamil', 'jamil@gmail.com', NULL, '$2y$10$HabmCsZQUUM4rJnuULbhm.qKmrcihCExzgebUK6ZlR.yNARHwmVQ6', 1, NULL, '2021-01-03 08:25:48', '2021-01-03 08:25:48'),
 (2, 'Nafi', 'nafi@gmail.com', NULL, '$2y$10$y2GATpWk9A.qf1HHZqfRvOyVbGLMh.zQ/J3Y5.h45lMNemwsOQJQW', 2, NULL, '2021-01-03 08:26:17', '2021-01-03 08:26:17'),
 (3, 'ifti', 'infi@gmail.com', NULL, '$2y$10$xBa0d604stIm4iY/Fzo5b.jO6febHjMaWzmk/ifvLtbpUNba5ernC', 3, NULL, '2021-01-03 08:26:35', '2021-01-03 08:26:35'),
-(4, 'Imtiaz', 'imti@gmail.com', NULL, '$2y$10$nyL4gtIA.K0FMU8P3QKIXuFE1QMjXuP6LJ662P9RqFkF.JtQeVRru', 4, NULL, '2021-01-03 08:27:25', '2021-01-03 08:27:25');
+(4, 'Imtiaz', 'imti@gmail.com', NULL, '$2y$10$nyL4gtIA.K0FMU8P3QKIXuFE1QMjXuP6LJ662P9RqFkF.JtQeVRru', 4, 'WJJzSavvX9Ctt8ZVjVU6BNW193yB4Zl7APr7S90zP0488dZJERKdGHqzpCcs', '2021-01-03 08:27:25', '2021-01-03 08:27:25'),
+(7, 'Sudayev', 'mikhail@gmail.com', NULL, '$2y$10$mK7YUqyTgmc0SX0VmbAwte106nKxPiZFs6yOkr3UBN4e98zbbt0l2', 3, NULL, '2021-01-04 00:54:47', '2021-01-04 00:54:47');
 
 --
 -- Indexes for dumped tables
@@ -148,7 +149,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
