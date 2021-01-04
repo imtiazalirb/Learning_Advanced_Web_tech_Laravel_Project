@@ -43,10 +43,10 @@
             Delivery
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{route('delivery.show')}}">All Delivery Requests</a>
-            <a class="dropdown-item" href="admin_employee_signup.php">Pending Deliveries</a>
-            <a class="dropdown-item" href="admin_edit_employee.php">Shipped Deliverries</a>
-            <a class="dropdown-item" href="admin_edit_employee.php">Cancelled Deliverries</a>
+            <a class="dropdown-item" href="">All Delivery Requests</a>
+            <a class="dropdown-item" href="">Pending Deliveries</a>
+            <a class="dropdown-item" href="">Shipped Deliverries</a>
+            <a class="dropdown-item" href="">Cancelled Deliverries</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -54,7 +54,7 @@
           Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="admin_all_employee.php">My profile</a>
+            <a class="dropdown-item" href="">My profile</a>
             <a class="dropdown-item"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  href="{{ route('logout') }}">Logout </a>
           </div>
         </li>
@@ -70,6 +70,43 @@
    </div>
   </nav>
 </div>
+
+
+<table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Customer name</th>
+            <th>Product Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Report</th>
+            <th>Action</th>
+            <th width="250px">Action</th>
+        </tr>
+        @foreach ($Deliveries as $deliver)
+        <tr>
+
+            <td>{{ $deliver->id }}</td>
+            <td>{{ $deliver->customer_name}}</td>
+            <td>{{ $deliver->product_name }}</td>
+            <td>{{ $deliver->address }}</td>
+            <td>{{ $deliver->phone }}</td>
+            <td>{{ $deliver->email }}</td>
+            <td>{{ $deliver->amount }}</td>
+            <td>{{ $deliver->status }}</td>
+            <td>{{ $deliver->report }}</td>
+            <td></td>
+        </tr>
+        @endforeach
+    </table>
+
+
+
+
+
 </header>
 </body>
 

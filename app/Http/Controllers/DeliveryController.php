@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Delivery;
 use Illuminate\Http\Request;
+//use DataTables;
 
 class DeliveryController extends Controller
 {
@@ -14,7 +15,14 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        return view('delivery.index');
+        //return view('delivery.index');
+        $deliveries = Delivery::all();
+        return view('Delivery.index')->with('Deliveries',$deliveries);
+    }
+
+    public function table()
+    {
+        //return view('delivery.show',compact('delivery'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -46,7 +54,12 @@ class DeliveryController extends Controller
      */
     public function show(Delivery $delivery)
     {
-        //
+        //return view('delivery.show');
+        //$delivery = Delivery::latest()->paginate(10);
+
+        //return view('delivery.show',compact('delivery'))->with('i', (request()->input('page', 1) - 1) * 5);
+        //return view("delivery.index")->with("Deliveries",$deliveries);
+
     }
 
     /**
@@ -80,6 +93,9 @@ class DeliveryController extends Controller
      */
     public function destroy(Delivery $delivery)
     {
-        //
+        $delivery->delete();
+
+        return redirect()->route('delivery.show')
+                        ->with('success','Delivery deleted successfully');
     }
 }
