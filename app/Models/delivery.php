@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class delivery extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'customer_name',
+        'product_name',
+        'address',
+        'phone',
+        'email',
+        'verification',
+        'status',
+    ];
 }

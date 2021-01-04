@@ -23,6 +23,8 @@ Auth::routes();
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
 Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee')->middleware('employee');
 Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer')->middleware('customer');
-Route::get('/delivery', 'App\Http\Controllers\DeliveryController@index')->name('delivery')->middleware('delivery');
+Route::get('/delivery', [App\Http\Controllers\DeliveryController::class, 'index'])->name('delivery')->middleware('delivery');
+
+Route::get('/delivery', [App\Http\Controllers\DeliveryController::class, 'index'])->name('delivery')->middleware('delivery');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
