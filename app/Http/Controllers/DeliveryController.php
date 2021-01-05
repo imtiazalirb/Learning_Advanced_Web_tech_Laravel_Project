@@ -32,11 +32,6 @@ class DeliveryController extends Controller
         return $pdf->download('delivery.pdf');
     }
 
-    public function table()
-    {
-        //return view('delivery.show',compact('delivery'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -72,7 +67,6 @@ class DeliveryController extends Controller
         //return view('delivery.show',compact('delivery'))->with('i', (request()->input('page', 1) - 1) * 5);
         //return view("delivery.index")->with("Deliveries",$deliveries);
         return $delivery;
-
     }
 
     /**
