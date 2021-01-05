@@ -17,9 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -63,62 +63,135 @@
     <!--LOGOUT BUTTON-->
 
     <h5 class="my-sm-2 mr-lg-2">Welcome, {{ Auth::user()->name }} </h5>
-      <a class="btn btn-danger my-sm-2 ml-lg-2" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        <a class="btn btn-danger my-sm-2 ml-lg-2" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
           @csrf
-      </form>
+        </form>
    </div>
   </nav>
 </div>
-
-
-<table class="table table-bordered">
+</header>
+  <main class="container-fluid">
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+  <h6 class="pb-2 mb-4">Delivery List</h6>
+  <table class="table table-striped">
+  <thead>
         <tr>
-            <th>Id</th>
-            <th>Customer name</th>
-            <th>Product Name</th>
+            <th>#</th>
+            <th>Order Details</th>
             <th>Address</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Amount</th>
-            <th>Status</th>
+            <th class="text-center">Amount</th>
+            <th class="text-center">Status</th>
             <th>Report</th>
-            <th width="250px">Action</th>
+            <th class="text-right">Action</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($deliveries as $delivery)
         <tr>
 
             <td>{{ $delivery->id }}</td>
-            <td>{{ $delivery->customer_name}}</td>
-            <td>{{ $delivery->product_name }}</td>
-            <td>{{ $delivery->address }}</td>
-            <td>{{ $delivery->phone }}</td>
-            <td>{{ $delivery->email }}</td>
-            <td>{{ $delivery->amount }}</td>
-            <td>{{ $delivery->status }}</td>
-            <td>{{ $delivery->report }}</td>
             <td>
+              <p><strong>{{ $delivery->customer_name}}</strong></br><small>{{ $delivery->product_name }}</small>
+              </p>
+            </td>
+            <td>{{ $delivery->address }}</td>
+            <td class="text-center">{{ $delivery->amount }}</td>
+            <td class="text-center verify-status">
+              @if($delivery->status =='Unverified' || $delivery->status =='unverified')
+                <span title="Unverified" class="orange"><i class="uil uil-exclamation-circle"></i></span>
+              @else
+                <span title="Verified" class="green"><i class="uil uil-check-circle"></i></span>
+              @endif
+            </td>
+            <td>{{ $delivery->report }}</td>
+            <td class="text-right">
                 <form action="{{ route('delivery.destroy',$delivery->id) }}" method="POST">
 
-                    <a class="btn btn-info" href="{{ route('delivery.show',$delivery->id) }}">Show</a>
+                    <a class="btn btn-outline-info btn-sm" onclick="getDetails(`{{$delivery->id}}`)" href="javascript:void('0');"><i class="uil uil-eye"></i></a>
 
-                    <a class="btn btn-primary" href="{{ route('delivery.edit',$delivery->id) }}">Edit</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ route('delivery.edit',$delivery->id) }}"><i class="uil uil-edit-alt"></i></a>
 
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="uil uil-trash"></i></button>
                 </form>
             </td>
         </tr>
         @endforeach
+</tbody>
     </table>
+  </div>
 
+    <div id="orderModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="orderModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div id="orderData" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Order # <span class="oID"></span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5 class="pb-2 mb-0">Customer Info</h5>
+            <div class="mb-4 text-muted">
+              <small>
+                <strong>Name: </strong><span class="cName"></span><br>
+                <strong>Phone: </strong><span class="cPhone"></span><br>
+                <strong>Email: </strong><span class="cEmail"></span><br>
+                <strong>Address: </strong><span class="cAddress"></span><br>
+              </small>
+            </div>
 
+            <h5 class="pb-2 mb-0">Order Details</h5>
+            <div class="mb-4 text-muted">
+              <small>
+                <strong>Product: </strong><span class="oProduct"></span><br>
+                <strong>Amount: </strong><span class="oAmount"></span><br>
+                <strong>Status: </strong><span class="oStatus"></span><br>
+                <strong>Report: </strong><span class="oReport"></span><br>
+              </small>
+            </div>
 
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </main>
 
-</header>
+  <script>
+    function getDetails(id) {
+      $.ajax({
+          url         : '/delivery/'+id,
+          dataType    : 'JSON',
+          type        : 'GET',
+          success: function(response){
+              $('#orderData .oID').text(response.id);
+
+              //Customer Data
+              $('#orderData .cName').text(response.customer_name);
+              $('#orderData .cEmail').text(response.email);
+              $('#orderData .cPhone').text(response.phone);
+              $('#orderData .cAddress').text(response.address);
+
+              //Order Data
+              $('#orderData .oProduct').text(response.product_name);
+              $('#orderData .oAmount').text(response.amount);
+              $('#orderData .oStatus').text(response.status);
+              $('#orderData .oReport').text(response.report);
+
+              $('#orderModal').modal('show')
+              console.log(response);
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              console.log('Error '+xhr.status+' | '+thrownError);
+          },
+      });
+    }
+
+  </script>
 </body>
 
 </html>
