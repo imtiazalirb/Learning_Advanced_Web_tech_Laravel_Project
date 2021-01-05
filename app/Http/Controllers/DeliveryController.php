@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Delivery;
 use Illuminate\Http\Request;
 //use DataTables;
+use DB;
+use PDF;
 
 class DeliveryController extends Controller
 {
@@ -17,7 +19,14 @@ class DeliveryController extends Controller
     {
         //return view('delivery.index');
         $deliveries = Delivery::all();
-        return view('Delivery.index')->with('Deliveries',$deliveries);
+        return view('delivery.index')->with('deliveries',$deliveries);
+    }
+
+    public function exportPdf(){
+        $deliveries = Delivery::all();
+        //$pdf = PDF::loadView('delivery.index', compact('deliveries'));
+        $pdf = \PDF::loadView('home')->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->download('delivery.pdf');
     }
 
     public function table()
@@ -71,7 +80,7 @@ class DeliveryController extends Controller
      */
     public function edit(Delivery $delivery)
     {
-        //
+        return view('delivery.edit',compact('delivery'));
     }
 
     /**
@@ -83,7 +92,16 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, Delivery $delivery)
     {
-        //
+        $request->validate([
+            'address' => 'required',
+            'status' => 'required',
+            'report' => 'required',
+        ]);
+
+        $delivery->update($request->all());
+
+        return redirect()->route('delivery.index')
+                        ->with('success','Delivery updated successfully');
     }
 
     /**
@@ -99,4 +117,6 @@ class DeliveryController extends Controller
         return redirect()->route('delivery.index')
                         ->with('success','Delivery deleted successfully');
     }
+
+
 }

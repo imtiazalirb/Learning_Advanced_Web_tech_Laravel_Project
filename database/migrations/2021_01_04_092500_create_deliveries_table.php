@@ -21,8 +21,8 @@ class CreateDeliveriesTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->integer('amount');
-            $table->string('status')->default('unverified');
-            $table->string('report')->default('pending');
+            $table->string('status')->default('Unverified');
+            $table->string('report')->default('Pending');
             $table->timestamps();
         });
     }

@@ -28,3 +28,4 @@ Route::resource('/delivery', App\Http\Controllers\DeliveryController::class);
 //Route::get('/delivery', 'App\Http\Controllers\DeliveryController@table')->name('delivery')->middleware('delivery');
 
 //Route::get('/home', [App\Http\Controllers\Controller::class])->name('home');
+Route::get('/pdf', [App\Http\Controllers\DeliveryController::class, 'exportPdf']);

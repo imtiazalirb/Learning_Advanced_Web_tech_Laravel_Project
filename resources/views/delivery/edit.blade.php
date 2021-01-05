@@ -71,54 +71,43 @@
   </nav>
 </div>
 
+<h3 class="display-5 text-center my-4">Delivery Information Edit</h3>
+<div class="container">
+<form action="{{ route('delivery.update',$delivery->id) }}" method="POST">
+    @csrf
+    @method('PUT')
 
-<table class="table table-bordered">
-        <tr>
-            <th>Id</th>
-            <th>Customer name</th>
-            <th>Product Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Amount</th>
-            <th>Status</th>
-            <th>Report</th>
-            <th width="250px">Action</th>
-        </tr>
-        @foreach ($deliveries as $delivery)
-        <tr>
+     <div class="row">
+        <div class="col-md-8 mb-3">
+            <div class="form-group">
+                <strong>Adress</strong>
+                <input type="text" name="address" value="{{ $delivery->address }}" class="form-control" placeholder="Address">
+            </div>
+        </div>
+    </div>
 
-            <td>{{ $delivery->id }}</td>
-            <td>{{ $delivery->customer_name}}</td>
-            <td>{{ $delivery->product_name }}</td>
-            <td>{{ $delivery->address }}</td>
-            <td>{{ $delivery->phone }}</td>
-            <td>{{ $delivery->email }}</td>
-            <td>{{ $delivery->amount }}</td>
-            <td>{{ $delivery->status }}</td>
-            <td>{{ $delivery->report }}</td>
-            <td>
-                <form action="{{ route('delivery.destroy',$delivery->id) }}" method="POST">
+        <div class="row">
+        <div class="col-md-4 mb-3">
+				<label for="status">Status</label>
+				<select name="status" class="custom-select" placeholder="Status">
+					<option>Unverified</option>
+					<option>Verified</option>
+				</select>
+			</div>
+            </div>
 
-                    <a class="btn btn-info" href="{{ route('delivery.show',$delivery->id) }}">Show</a>
-
-                    <a class="btn btn-primary" href="{{ route('delivery.edit',$delivery->id) }}">Edit</a>
-
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-
-
-
-
-
-</header>
-</body>
-
+            <div class="row">
+            <div class="col-md-4 mb-3">
+    				<label for="report">Report</label>
+    				<select name="report" class="custom-select" placeholder="report">
+    					<option value="Pending">Pending</option>
+    					<option value="Delivered">Delivered</option>
+    				</select>
+    			</div>
+                </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+</form>
+</div>
 </html>
