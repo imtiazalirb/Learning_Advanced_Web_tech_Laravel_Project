@@ -15,7 +15,7 @@ class delivery extends Model
         'address',
         'phone',
         'email',
-        'verification',
         'status',
+        'report',
     ];
 }
