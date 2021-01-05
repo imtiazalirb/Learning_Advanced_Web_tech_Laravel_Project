@@ -101,10 +101,10 @@
     				<label for="report">Report</label>
     				<select name="report" class="custom-select" placeholder="report">
     					<option value="Pending">Pending</option>
-                        <option value="Pending">Processing</option>
-                        <option value="Pending">On Hold</option>
+                        <option value="Processing">Processing</option>
+                        <option value="On Hold">On Hold</option>
     					<option value="Delivered">Delivered</option>
-                        <option value="Pending">Cancelled</option>
+                        <option value="Canclled">Cancelled</option>
     				</select>
     			</div>
                 </div>
