@@ -25,7 +25,10 @@ class DeliveryController extends Controller
     public function exportPdf(){
         $deliveries = Delivery::all();
         //$pdf = PDF::loadView('delivery.index', compact('deliveries'));
-        $pdf = \PDF::loadView('home')->setOptions(['defaultFont' => 'sans-serif']);
+        $pdfSettings = [
+            'defaultFont' => 'sans-serif',
+        ];
+        $pdf = \PDF::loadView('report.pdf', compact('deliveries'))->setPaper('a4', 'landscape')->setOptions($pdfSettings);
         return $pdf->download('delivery.pdf');
     }
 
