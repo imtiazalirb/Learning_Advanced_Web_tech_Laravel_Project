@@ -108,14 +108,14 @@
             <td class="text-right">
                 <form action="{{ route('delivery.destroy',$delivery->id) }}" method="POST">
 
-                    <a class="btn btn-outline-info btn-sm" onclick="getDetails(`{{$delivery->id}}`)" href="javascript:void('0');"><i class="uil uil-eye"></i></a>
+                    <a class="btn btn-outline-info btn-sm" onclick="getDetails(`{{$delivery->id}}`)" href="javascript:void('0');" title="View"><i class="uil uil-eye"></i></a>
 
-                    <a class="btn btn-outline-primary btn-sm" href="{{ route('delivery.edit',$delivery->id) }}"><i class="uil uil-edit-alt"></i></a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ route('delivery.edit',$delivery->id) }}" title="Edit"><i class="uil uil-edit-alt"></i></a>
 
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="uil uil-trash"></i></button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Delete"><i class="uil uil-trash"></i></button>
                 </form>
             </td>
         </tr>
