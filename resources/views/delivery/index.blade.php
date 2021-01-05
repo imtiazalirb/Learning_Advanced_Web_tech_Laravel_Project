@@ -89,10 +89,10 @@
         <tbody>
         @foreach ($deliveries as $delivery)
         <tr>
-
             <td>{{ $delivery->id }}</td>
             <td>
-              <p><strong>{{ $delivery->customer_name}}</strong></br><small>{{ $delivery->product_name }}</small>
+              <p class="mb-0">{{ $delivery->customer_name}}</br>
+              <small class="text-muted"><strong>Item: </strong> {{ $delivery->product_name }}</small>
               </p>
             </td>
             <td>{{ $delivery->address }}</td>
